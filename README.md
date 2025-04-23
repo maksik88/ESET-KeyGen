@@ -6,7 +6,7 @@
   
   [![Commit activity](https://img.shields.io/github/commit-activity/t/rzc0d3r/ESET-KeyGen/main?cacheSeconds=0)](https://github.com/rzc0d3r/ESET-KeyGen/commits/main)
   ![Last commit](https://img.shields.io/github/last-commit/rzc0d3r/ESET-KeyGen/main?cacheSeconds=0)
-  ![Last test](https://img.shields.io/badge/last_test-15.04.2025_03:56_UTC+3-blue)
+  ![Last test](https://img.shields.io/badge/last_test-23.04.2025_03:56_UTC+3-blue)
   [![Opened issues](https://img.shields.io/github/issues/rzc0d3r/ESET-KeyGen?color=darkred)](https://github.com/rzc0d3r/ESET-KeyGen/issues?cacheSeconds=0)
   [![Closed issues](https://img.shields.io/github/issues-closed/rzc0d3r/ESET-KeyGen?color=darkgreen&cacheSeconds=0)](https://github.com/rzc0d3r/ESET-KeyGen/issues?q=is%3Aissue+is%3Aclosed)
   ![License](https://img.shields.io/github/license/rzc0d3r/ESET-KeyGen)
@@ -16,7 +16,7 @@ ESET-KeyGen - Trial-Key & Account generator for ESET Products
 
 ---
 
-## Disclaimer 
+## ⚠️ Disclaimer ⚠️
 ### Important: This tool is for educational purposes only.
 Using this tool may violate ESET's terms of service and could have legal implications.
 
@@ -24,11 +24,19 @@ The authors and contributors are not responsible for any misuse or damage caused
 
 Use at your own risk and only on systems you own or have explicit permission to test.
 
-</div>
+---
+## 💰 Donations 💰
+You can support this project financially by following the link [here](https://github.com/rzc0d3r/ESET-KeyGen?tab=readme-ov-file#-donations--1) 
 
 ---
-# If my page or project will be blocked, please refer to these links
-* My [public channel with archives of my projects](https://t.me/rzc0d3r_official)
+
+## Useful links
+My [public channel with archives of my projects](https://t.me/rzc0d3r_official)
+
+[ESET Antivirus free trial](https://www.eset.com/int/home/free-trial/)
+
+[ESET VPN](https://home.eset.com/download/vpn)
+</div>
 
 ---
 ## Project Status 
@@ -43,11 +51,6 @@ Use at your own risk and only on systems you own or have explicit permission to 
 ## Planned Features
 - Improved error handling/reporting
 - Support
-
----
-## Useful links to download ESET products:
-- [Antivirus free trial](https://www.eset.com/int/home/free-trial/)
-- [VPN](https://home.eset.com/download/vpn)
 
 ---
 ### Project files are detected as viruses by ESET, this is not true!
@@ -162,5 +165,10 @@ Delete your current ESET HOME account
 
 ## Documentation
    - Help improve our documentation by submitting updates or clarifications.
+
+# 💰 Donations 💰
+* USDT (ERC20) - **0x9d0E518AadEfAA33a11dDa094955e0eBEfDb121E**
+* BTC - **bc1qswjxej2cq0wf3yt39hfu2aqycxgyedaat94vgv**
+* PayPal - **raze.c0d3r@gmail.com**
 
 ## This project exists in its current state thanks to all the people who have contributed and to all who create issues, which we solve together!
