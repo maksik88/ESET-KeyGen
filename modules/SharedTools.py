@@ -7,6 +7,7 @@ import subprocess
 import traceback
 import colorama
 import logging
+import pathlib
 import random
 import string
 import shutil
@@ -157,6 +158,7 @@ def initSeleniumWebDriver(browser_name: str, webdriver_path = None, browser_path
         driver_options.add_experimental_option('excludeSwitches', ['enable-logging'])
         driver_options.add_argument("--log-level=3")
         driver_options.add_argument("--lang=en-US")
+        driver_options.page_load_strategy = "eager"
         if headless:
             driver_options.add_argument('--headless')
         if os.name == 'posix': # For Linux
@@ -186,6 +188,7 @@ def initSeleniumWebDriver(browser_name: str, webdriver_path = None, browser_path
         driver_options.add_experimental_option('excludeSwitches', ['enable-logging'])
         driver_options.add_argument("--log-level=3")
         driver_options.add_argument("--lang=en-US")
+        driver_options.page_load_strategy = "eager"
         if headless:
             driver_options.add_argument('--headless')
         if os.name == 'posix': # For Linux
@@ -210,6 +213,7 @@ def initSeleniumWebDriver(browser_name: str, webdriver_path = None, browser_path
                 raise e
     elif browser_name == MOZILLA_FIREFOX:
         driver_options = FirefoxOptions()
+        driver_options.page_load_strategy = "eager"
         if browser_path.strip() != '':
             driver_options.binary_location = browser_path
         driver_options.set_preference('intl.accept_languages', 'en-US')
@@ -289,10 +293,13 @@ def parseToken(email_obj, driver=None, eset_business=False, delay=DEFAULT_DELAY,
                     if email_obj.class_name in ['mailticking', 'incognitomail']:
                         time.sleep(1.5)
                     try:
+                        if email_obj.class_name == 'mailticking':
+                            driver.switch_to.frame(driver.find_element('id', 'email-iframe'))
                         if eset_business:
                             activated_href = driver.find_element('xpath', "//a[starts-with(@href, 'https://protecthub.eset.com')]").get_attribute('href') 
                         else:
                             activated_href = driver.find_element('xpath', "//a[starts-with(@href, 'https://login.eset.com')]").get_attribute('href')
+                        driver.switch_to.default_content()
                     except:
                         pass
         if activated_href is not None:
