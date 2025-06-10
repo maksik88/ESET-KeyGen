@@ -428,7 +428,7 @@ def parseToken(email_obj, driver=None, eset_business=False, delay=DEFAULT_DELAY,
                 if mail_from.find('product.eset.com') != -1 or mail_from.find('ESET HOME') != -1 or mail_subject.find('ESET PROTECT Hub') != -1:
                     email_obj.open_mail(mail_id)
                     if email_obj.class_name in ['mailticking', 'incognitomail']:
-                        time.sleep(1.5)
+                        time.sleep(2)
                     try:
                         if email_obj.class_name == 'mailticking':
                             driver.switch_to.frame(driver.find_element('id', 'email-iframe'))
@@ -469,13 +469,16 @@ def parseEPHKey(email_obj, driver=None, delay=DEFAULT_DELAY, max_iter=DEFAULT_MA
             for mail in inbox:
                 mail_id, mail_from, mail_subject = mail
                 if mail_subject.find('Thank you for purchasing') != -1:
-                    email_obj.open_mail(mail_id)
-                    time.sleep(3)
-                    if email_obj.class_name == 'mailticking':
-                        driver.switch_to.frame(driver.find_element('id', 'email-iframe'))
-                    license_data = email_obj.driver.page_source
-                    driver.switch_to.default_content()
-                    break
+                    try:
+                        email_obj.open_mail(mail_id)
+                        time.sleep(3)
+                        if email_obj.class_name == 'mailticking':
+                            license_data = driver.find_element('id', 'email-iframe').srcdoc
+                        else:
+                            license_data = email_obj.driver.page_source
+                        break
+                    except:
+                        pass
         if license_data is not None:
             license_data = str(license_data)
             license_key = re.search(r'([A-Z0-9]){4}-([A-Z0-9]){4}-([A-Z0-9]){4}-([A-Z0-9]){4}-([A-Z0-9]){4}', license_data).group()
@@ -488,45 +491,46 @@ def parseEPHKey(email_obj, driver=None, delay=DEFAULT_DELAY, max_iter=DEFAULT_MA
 def parseVPNCodes(email_obj, driver=None, delay=DEFAULT_DELAY, max_iter=DEFAULT_MAX_ITER):
     for _ in range(max_iter):
         data = None
-        if email_obj.class_name == '1secmail':
-            json = email_obj.read_email()
-            if json != []:
-                for message in json:
-                    if message['subject'].find('VPN - Setup instructions') != -1:
-                        data = email_obj.get_message(message['id'])['body']
-        elif email_obj.class_name in ['developermail', 'inboxes']:
-            messages = email_obj.get_messages()
-            if messages is not None:
-                for message in messages:
-                    if message['subject'].find('VPN - Setup instructions') != -1:
-                        data = message['body']
-        elif email_obj.class_name in ['guerrillamail', 'mailticking', 'fakemail', 'incognitomail']:
-            inbox = email_obj.parse_inbox()
-            for mail in inbox:
-                mail_id, mail_from, mail_subject = mail
-                if mail_subject.find('VPN - Setup instructions') != -1:
-                    email_obj.open_mail(mail_id)
-                    if email_obj.class_name == 'mailticking':
-                        time.sleep(1.5)
-                        try:
-                            driver.switch_to.frame(driver.find_element('id', 'email-iframe'))
-                            data = str(driver.execute_script(f'return {GET_EBCN}("email-content")[0].innerHTML'))
-                        except:
-                            pass
-                    elif email_obj.class_name == 'guerrillamail':
-                        try:
-                            data = str(driver.execute_script(f'return {GET_EBCN}("email_body")[0].innerHTML'))
-                        except:
-                            pass
-                    elif email_obj.class_name == 'incognitomail':
-                        time.sleep(1.5)
-                        try:
-                            data = str(driver.execute_script(f'return {GET_EBCN}("MuiBox-root joy-1v8x7dw")[0].innerHTML'))
-                        except:
-                            pass
-                    else:
-                        data = driver.page_source
-                    driver.switch_to.default_content()
+        try:
+            if email_obj.class_name == '1secmail':
+                json = email_obj.read_email()
+                if json != []:
+                    for message in json:
+                        if message['subject'].find('VPN - Setup instructions') != -1:
+                            data = email_obj.get_message(message['id'])['body']
+            elif email_obj.class_name in ['developermail', 'inboxes']:
+                messages = email_obj.get_messages()
+                if messages is not None:
+                    for message in messages:
+                        if message['subject'].find('VPN - Setup instructions') != -1:
+                            data = message['body']
+            elif email_obj.class_name in ['guerrillamail', 'mailticking', 'fakemail', 'incognitomail']:
+                inbox = email_obj.parse_inbox()
+                for mail in inbox:
+                    mail_id, mail_from, mail_subject = mail
+                    if mail_subject.find('VPN - Setup instructions') != -1:
+                        email_obj.open_mail(mail_id)
+                        if email_obj.class_name == 'mailticking':
+                            time.sleep(1.5)
+                            try:
+                                data = str(driver.find_element('id', 'email-iframe').get_attribute('srcdoc'))
+                            except:
+                                pass
+                        elif email_obj.class_name == 'guerrillamail':
+                            try:
+                                data = str(driver.execute_script(f'return {GET_EBCN}("email_body")[0].innerHTML'))
+                            except:
+                                pass
+                        elif email_obj.class_name == 'incognitomail':
+                            time.sleep(1.5)
+                            try:
+                                data = str(driver.execute_script(f'return {GET_EBCN}("MuiBox-root joy-1v8x7dw")[0].innerHTML'))
+                            except:
+                                pass
+                        else:
+                            data = driver.page_source
+        except:
+            pass
         if data is not None:
             match = re.findall(r'[A-Z0-9]{10}', data)
             if match is not None and len(match) == 10:
