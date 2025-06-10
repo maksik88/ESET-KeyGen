@@ -57,9 +57,9 @@ class EsetRegister(object):
         
         # Select Ukraine country
         logging.info('Selecting the country...')
-        if exec_js(f"return {GET_EBCN}('select__single-value ltr-1dimb5e-singleValue')[0]").text != 'Ukraine':
-            exec_js(f"return {GET_EBCN}('select__control ltr-13cymwt-control')[0]").click()
-            for country in exec_js(f"return {GET_EBCN}('select__option ltr-uhiml7-option')"):
+        if exec_js(f"return {GET_EBCN}('select__single-value css-1dimb5e-singleValue')[0]").text != 'Ukraine':
+            exec_js(f"return {GET_EBCN}('select__control css-13cymwt-control')[0]").click()
+            for country in exec_js(f"return {GET_EBCN}('select__option css-uhiml7-option')"):
                 if country.text == 'Ukraine':
                     country.click()
                     logging.info('Country selected!')
@@ -96,12 +96,12 @@ class EsetRegister(object):
         console_log(f'ESET-HOME-Token: {token}', OK, silent_mode=SILENT_MODE)
         console_log('\nAccount confirmation is in progress...', INFO, silent_mode=SILENT_MODE)
         self.driver.get(f'https://login.eset.com/link/confirmregistration?token={token}')
-        uCE(self.driver, 'return document.title === "ESET HOME"')
+        uCE(self.driver, 'return document.title.includes("ESET HOME")')
         try:
             uCE(self.driver, f'return {GET_EBCN}("verification-email_p").length === 0')
         except:
             self.driver.get(f'https://login.eset.com/link/confirmregistration?token={token}')
-            uCE(self.driver, 'return document.title === "ESET HOME"')
+            uCE(self.driver, 'return document.title.includes("ESET HOME")')
             uCE(self.driver, f'return {GET_EBCN}("verification-email_p").length === 0')
         logging.info('Account successfully confirmed!')
         console_log('Account successfully confirmed!', OK, silent_mode=SILENT_MODE)
@@ -189,9 +189,9 @@ class EsetVPN(object):
             if profile.get_attribute("innerText").find(self.email_obj.email) != -1: # Me profile contains an email address
                 profile.click()
         uCE(self.driver, f'return {CLICK_WITH_BOOL}({GET_EBAV}("button", "data-label", "choose-profile-continue-btn"))', max_iter=5)
-        uCE(self.driver, f'return {GET_EBAV}("ion-button", "robot", "choose-device-counter-increment-button") != null', max_iter=10)
+        uCE(self.driver, f'return {GET_EBAV}("button", "data-label", "choose-device-counter-increment-button") != null', max_iter=10)
         for _ in range(9): # increasing 'Number of devices' (to 10)
-            exec_js(f'{GET_EBAV}("ion-button", "robot", "choose-device-counter-increment-button").click()')
+            exec_js(f'{GET_EBAV}("button", "data-label", "choose-device-counter-increment-button").click()')
         exec_js(f'{GET_EBAV}("button", "data-label", "choose-device-count-submit-button").click()')
         uCE(self.driver, f'return {GET_EBAV}("button", "data-label", "pwm-instructions-sent-download-button") != null', max_iter=15)
         logging.info('Request successfully sent!')
