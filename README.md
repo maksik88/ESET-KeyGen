@@ -2,11 +2,11 @@
 
   <img src="https://github.com/rzc0d3r/ESET-KeyGen/blob/main/img/logo_alt.png?raw=true" alt="logo"/>
     
-  ![Version](https://img.shields.io/badge/version-1.5.5.6-gold)
+  ![Version](https://img.shields.io/badge/version-1.5.5.7-gold)
   
   [![Commit activity](https://img.shields.io/github/commit-activity/t/rzc0d3r/ESET-KeyGen/main?cacheSeconds=0)](https://github.com/rzc0d3r/ESET-KeyGen/commits/main)
   ![Last commit](https://img.shields.io/github/last-commit/rzc0d3r/ESET-KeyGen/main?cacheSeconds=0)
-  ![Last test](https://img.shields.io/badge/last_test-08.07.2025_04:49_UTC+3-blue)
+  ![Last test](https://img.shields.io/badge/last_test-11.07.2025_15:43_UTC+3-blue)
   [![Opened issues](https://img.shields.io/github/issues/rzc0d3r/ESET-KeyGen?color=darkred)](https://github.com/rzc0d3r/ESET-KeyGen/issues?cacheSeconds=0)
   [![Closed issues](https://img.shields.io/github/issues-closed/rzc0d3r/ESET-KeyGen?color=darkgreen&cacheSeconds=0)](https://github.com/rzc0d3r/ESET-KeyGen/issues?q=is%3Aissue+is%3Aclosed)
   ![License](https://img.shields.io/github/license/rzc0d3r/ESET-KeyGen)
@@ -43,6 +43,7 @@ My [public channel with archives of my projects](https://t.me/rzc0d3r_official)
 - Current Status: Active development
 
 ## Known Errors
+- **Almost all Email APIs have been blocked by ESET!!!** Recommended to use ```emailfake```, ```inboxes``` and also use the ```--custom-email-api``` argument!
 - **ESET** has removed the trial version for VPN, it is now **fully paid**. The ```--vpn-codes``` argument does not work now!
 - ```mailticking```, ```incognitomail``` added **cloudflare** captcha
 - **ACT0**, **ACT5** errors may occur during activation in some cases
@@ -168,8 +169,6 @@ Delete your current ESET HOME account
    - Help improve our documentation by submitting updates or clarifications.
 
 # 💰 Donations 💰
-* USDT (ERC20) - **0x9d0E518AadEfAA33a11dDa094955e0eBEfDb121E**
-* BTC - **bc1qswjxej2cq0wf3yt39hfu2aqycxgyedaat94vgv**
 * PayPal - **raze.c0d3r@gmail.com**
 
 ## This project exists in its current state thanks to all the people who have contributed and to all who create issues, which we solve together!
