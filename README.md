@@ -6,7 +6,7 @@
   
   [![Commit activity](https://img.shields.io/github/commit-activity/t/rzc0d3r/ESET-KeyGen/main?cacheSeconds=0)](https://github.com/rzc0d3r/ESET-KeyGen/commits/main)
   ![Last commit](https://img.shields.io/github/last-commit/rzc0d3r/ESET-KeyGen/main?cacheSeconds=0)
-  ![Last test](https://img.shields.io/badge/last_test-11.07.2025_15:43_UTC+3-blue)
+  ![Last test](https://img.shields.io/badge/last_test-13.07.2025_15:41_UTC+3-blue)
   [![Opened issues](https://img.shields.io/github/issues/rzc0d3r/ESET-KeyGen?color=darkred)](https://github.com/rzc0d3r/ESET-KeyGen/issues?cacheSeconds=0)
   [![Closed issues](https://img.shields.io/github/issues-closed/rzc0d3r/ESET-KeyGen?color=darkgreen&cacheSeconds=0)](https://github.com/rzc0d3r/ESET-KeyGen/issues?q=is%3Aissue+is%3Aclosed)
   ![License](https://img.shields.io/github/license/rzc0d3r/ESET-KeyGen)
@@ -72,7 +72,7 @@ ESET -> Settings -> Advanced Setup -> Detection Engine -> Exclusions -> Detectio
 You can simply use the GitHub actions workflow given [here](https://github.com/rzc0d3r/ESET-KeyGen/blob/main/.github/workflows/eset.yml) in your GitHub repo.
 
 Make a fork of my project. Go to it.
-Then goto the **Actions** tab, choose **Generator** actions and then run the workflow.
+Then goto the **Actions** tab, choose **Account and Key Generator** actions and then run the workflow.
 
 It will ask the number of accounts, keys to be generated.
 
